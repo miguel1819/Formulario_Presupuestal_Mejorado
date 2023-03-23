@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+			<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>Formulario Presupuestal</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<meta content="" name="description" />
+		<meta content="" name="author" />
+		<!-- ====Librerias externas para usar la grafica highcharts==== -->
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		<script src="https://code.highcharts.com/modules/export-data.js"></script>
+		<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+		<!-- ================== BEGIN BASE CSS STYLE ================== -->
+		<link href="../Public/assets/css/ALERT02.css" rel="stylesheet" /><!-- hola de estilos necesaria para los swal alert -->
+		<link href="../Public/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" /><!-- boostrap packet-->
+		<link href="../Public/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" /><!--libreria de iconos-->
+		<link href="../Public/assets/css/style.min.css" rel="stylesheet" /><!-- hoja de estilos default general-->
+		<link href="../Public/assets/css/css.css" rel="stylesheet" /><!-- hoja de estilos personalizada-->
+		<!-- ================== END BASE CSS STYLE ================== -->
+	</head>
+	<body>
+		<!-- begin #page-loader -->
+		<div id="page-loader" class="fade in"><span class="spinner"></span></div><!-- icono cargando-->
+		<!-- end #page-loader -->
+			<!-- begin #page-container -->
+			<div id="page-container" class="fade">
+				<!-- begin #content -->
+				<div id="content" class="content">
+					<!-- begin row -->
+					<div class="row">
+						<h1 class="page-header">REPORTE DE AVANCE PRESUPUESTAL</h1><!-- cabecera-->
+						<div class="col-md-4 col-sm-6"><!-- card presupuesto-->
+							<div class="widget widget-stats bg-white">
+								<div class="stats-link">
+									<a>PRESUPUESTO</a>
+								</div>
+								<div class="stats-info">
+									<div  class="stats-number"  id="amount_drafts">
+										<i class="icono_presupuesto fa fa-dollar fa-fw"></i><span id="presupuesto">Null</span>
+									</div>
+								</div>
+								<hr>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6"><!-- card ejercido -->
+							<div class="widget widget-stats bg-white">
+								<div class="stats-link">
+									<a>EJERCIDO</a>
+								</div>
+								<div class="stats-info">
+									<div  class="stats-number"  id="amount_drafts">
+										<i class="icono_ejercido fa fa-percent fa-fw"></i><span id="ejercido">Null</span>
+									</div>
+								</div>
+								<hr>
+								<div class="stats-link2">
+									<a><i class="fa fa-dollar fa-fw"></i> 2274560 </a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6"><!-- card No ejercido-->
+							<div class="widget widget-stats bg-white">
+								<div class="stats-link">
+									<a>NO EJERCIDO</a>
+								</div>
+								<div class="stats-info">
+									<div  class="stats-number"  id="amount_drafts">
+										<i class="icono_NO_ejercido fa fa-percent fa-fw"></i><span id="No_ejercido">Null</span>
+									</div>
+								</div>
+								<hr>
+								<div class="stats-link2">
+									<a><i class="fa fa-dollar fa-fw"></i> 3321220 </a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row"><!-- nuevo renglon para la grafica-->
+						<div class="col-md-12">
+							<div class="panel panel-inverse" data-sortable-id="flot-chart-7">
+								<figure class="highcharts-figure">
+									<div id="container"></div>
+								</figure>
+							</div>
+						</div>
+					</div>
+					<br>
+					<br>
+					<!-- Seccion de la tabla con combobox y botones -->
+					<div class="row">
+						<div class="col-md-12">
+							<!-- begin panel -->
+							<div class="panel panel-default"><!-- estilo de cabecera de la tabla -->
+								<div class="panel-heading">
+									<h3 class="panel-title"><i class="fa fa-angle-double-up" aria-hidden="true"></i>  FILTROS
+									</div>
+										<!-- funciones de Cobobox Filter Status -->
+										<div class="col-md-3 pull-left" >
+											<br>
+												<select name="cbxSecretaria" id="cbxSecretaria" class="form-control" onchange=FiltrocbxSecretaria()>
+													<option value="0">SECRETARIA</option>
+												</select>
+											<br>
+										</div>
+										<div class="col-md-3 pull-left" >
+											<br>
+												<select name="cbxSSecretaria" id="cbxSSecretaria" class="form-control" onchange=FiltrocbxSUBSecretaria()>
+													<option value="0">SUBSECRETARIA </option>
+												</select>
+											<br>
+										</div>
+										<div class="col-md-3 pull-left" >
+											<br>
+												<select name="cbxProyecto" id="cbxProyecto" class="form-control">
+													<option value="0">PROYECTO </option>
+												</select>
+											<br>
+										</div>
+										<!-- FIn de Cobobox Filter Status -->
+										<!-- Boton Limpiar y filtrar -->
+										<div class="col-md-3 pull-left">
+											<div class="col-md-6 " >
+												<br>
+													<button
+														class="form-control-filtrar"
+														value="panel-default"
+														onMouseover="this.style.color='grey'"
+														onMouseout="this.style.color='#fafdff'"
+														data-toggle='modal'
+														data-backdrop="static"
+														data-target='#AgregarLaptop'
+														onclick="tabla()">
+														FILTRAR
+													</button> </h3>
+													<br>
+												<br>
+											</div>
+											<div class="col-md-6 " >
+												<br>
+													<button value="Electrical"
+														onMouseover="this.style.color='grey'"
+														onMouseout="this.style.color='blue'"
+														class="form-control-limpiar"
+														data-toggle='modal'
+														data-backdrop="static"
+														data-target='#AgregarLaptop'
+														onclick="limpiartabla(this.value)">
+														LIMPIAR
+													</button> </h3>
+													<br>
+												<br>
+											</div>
+										</div>
+										<!-- FIn de Botones -->
+									<div class="panel-body table-responsive">
+										<table id="data_table" class=" table table-striped table-bordered table-responsive">
+											<thead>
+												<tr>
+													<th>Secretaria</th>
+													<th>Subsecretaria</th>
+													<th>Proyecto</th>
+													<th>Presupuesto Original</th>
+													<th>Presupuesto Modificado</th>
+													<th>Presupuesto Comprometido</th>
+													<th>Presupuesto Devengado</th>
+												</tr>
+											</thead>
+											<tbody id="data">
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<!-- end panel -->
+							</div>
+							<!-- end col-12 -->
+						</div>
+						<!-- end fin de tabla -->
+					</div>
+					<!-- end #content -->
+				<!-- begin scroll to top btn -->
+				<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+				<!-- end scroll to top btn -->
+			</div>
+			<!-- end page container -->
+		<!-- ================== BEGIN BASE JS ================== -->
+		<script src="../Public/assets/plugins/jquery/jquery-1.9.1.min.js"></script><!-- jquery necesario para el swall alert -->
+		<script src="../Public/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+		<script src="../Public/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script><!-- clic en anormalidades-->
+		<script src="../Public/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<!-- ================== END BASE JS ================= -->
+		<script src="../Public/js/confirmacionsw.js"></script><!-- accion para los swal alert -->
+		<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+		<script src="../Public/assets/js/apps.min.js"></script>
+		<script src="../Control/js/reporte.js"></script>
+		<script src="../Control/js/index.js"></script>
+		<!-- ================== END PAGE LEVEL JS ================== -->
+		<script>
+			$(document).ready(function() {
+				App.init();
+				Muestra_cards();//carga data en las cards
+				mustra_graph();//carga data en la grafica
+				loading_Cbx();//carga data en con CBX de la tabla filtros
+			});
+		</script>
+	</body>
+</html>
