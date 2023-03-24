@@ -97,31 +97,33 @@
 									<h3 class="panel-title"><i class="fa fa-angle-double-up" aria-hidden="true"></i>  FILTROS
 									</div>
 										<!-- funciones de Cobobox Filter Status -->
-										<div class="col-md-3 pull-left" >
-											<br>
-												<select name="cbxSecretaria" id="cbxSecretaria" class="form-control" onchange=FiltrocbxSecretaria()>
-													<option value="0">SECRETARIA</option>
-												</select>
-											<br>
-										</div>
-										<div class="col-md-3 pull-left" >
-											<br>
-												<select name="cbxSSecretaria" id="cbxSSecretaria" class="form-control" onchange=FiltrocbxSUBSecretaria()>
-													<option value="0">SUBSECRETARIA </option>
-												</select>
-											<br>
-										</div>
-										<div class="col-md-3 pull-left" >
-											<br>
-												<select name="cbxProyecto" id="cbxProyecto" class="form-control">
-													<option value="0">PROYECTO </option>
-												</select>
-											<br>
+										<div class="col-md-11">
+											<div class="col-md-3 pull-left" >
+												<br>
+													<select name="cbxSecretaria" id="cbxSecretaria" class="form-control" onchange=FiltrocbxSecretaria()>
+														<option value="0">SECRETARIA</option>
+													</select>
+												<br>
+											</div>
+											<div class="col-md-3 pull-left" >
+												<br>
+													<select name="cbxSSecretaria" id="cbxSSecretaria" class="form-control" onchange=FiltrocbxSUBSecretaria()>
+														<option value="0">SUBSECRETARIA </option>
+													</select>
+												<br>
+											</div>
+											<div class="col-md-3 pull-left" >
+												<br>
+													<select name="cbxProyecto" id="cbxProyecto" class="form-control">
+														<option value="0">PROYECTO </option>
+													</select>
+												<br>
+											</div>
 										</div>
 										<!-- FIn de Cobobox Filter Status -->
 										<!-- Boton Limpiar y filtrar -->
-										<div class="col-md-3 pull-left">
-											<div class="col-md-6 " >
+										<div class="col-md-10 pull-right">
+											<div class="col-md-2 pull-right" >
 												<br>
 													<button
 														class="form-control-filtrar"
@@ -137,7 +139,7 @@
 													<br>
 												<br>
 											</div>
-											<div class="col-md-6 " >
+											<div class="col-md-2 pull-right" >
 												<br>
 													<button value="Electrical"
 														onMouseover="this.style.color='grey'"
@@ -154,23 +156,25 @@
 											</div>
 										</div>
 										<!-- FIn de Botones -->
-									<div class="panel-body table-responsive">
-										<table id="data_table" class=" table table-striped table-bordered table-responsive">
-											<thead>
-												<tr>
-													<th>Secretaria</th>
-													<th>Subsecretaria</th>
-													<th>Proyecto</th>
-													<th>Presupuesto Original</th>
-													<th>Presupuesto Modificado</th>
-													<th>Presupuesto Comprometido</th>
-													<th>Presupuesto Devengado</th>
-												</tr>
-											</thead>
-											<tbody id="data">
-											</tbody>
-										</table>
-									</div>
+										<div class="col-md-12 pull-right" >
+											<div class="panel-body table-responsive">
+												<table id="data_table" class=" table table-striped table-bordered table-responsive">
+													<thead>
+														<tr>
+															<th>Secretaria</th>
+															<th>Subsecretaria</th>
+															<th>Proyecto</th>
+															<th>Presupuesto Original</th>
+															<th>Presupuesto Modificado</th>
+															<th>Presupuesto Comprometido</th>
+															<th>Presupuesto Devengado</th>
+														</tr>
+													</thead>
+													<tbody id="data">
+													</tbody>
+												</table>
+											</div>
+										</div>
 								</div>
 								<!-- end panel -->
 							</div>
